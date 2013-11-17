@@ -41,5 +41,6 @@ android {
 dependencies {
     compile 'com.android.support:support-v4:+'
     compile group: 'com.jakewharton', name: 'butterknife', version: '3.0.1'
+    compile 'com.google.code.gson:gson:2.2.4'
     compile fileTree(dir: 'libs', include: '*.jar', exclude: '*javadoc*')
 }
