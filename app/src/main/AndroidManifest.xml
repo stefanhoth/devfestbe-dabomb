@@ -38,7 +38,7 @@
             android:label="@string/title_activity_lobby"></activity>
         <activity
             android:name="be.devfest.dabomb.activities.SessionActivity"
-            android:label="@string/title_activity_lobby"></activity>
+            android:label="@string/title_activity_session"></activity>
     </application>
 
 </manifest>
