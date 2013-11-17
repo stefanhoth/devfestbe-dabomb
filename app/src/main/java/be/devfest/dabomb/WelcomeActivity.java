@@ -15,8 +15,8 @@ import android.widget.TextView;
 
 ;
 
-public class MainMenuActivity extends Activity
-implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+public class WelcomeActivity extends Activity
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -31,7 +31,7 @@ implements NavigationDrawerFragment.NavigationDrawerCallbacks {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_menu);
+        setContentView(R.layout.activity_welcome);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -127,7 +127,7 @@ implements NavigationDrawerFragment.NavigationDrawerCallbacks {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main_menu, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_welcome, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
@@ -136,7 +136,7 @@ implements NavigationDrawerFragment.NavigationDrawerCallbacks {
         @Override
         public void onAttach(Activity activity) {
             super.onAttach(activity);
-            ((MainMenuActivity) activity).onSectionAttached(
+            ((WelcomeActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
