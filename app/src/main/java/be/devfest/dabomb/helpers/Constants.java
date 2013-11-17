@@ -12,6 +12,7 @@ public abstract class Constants {
 
     public static final String KEY_GAME_MODE = "KEY_GAME_MODE";
 
+    public static final String GAME_TAG = "DABOMB_v1";
 
     public static final int GAME_MODE_MASTER = 1000;
     public static final int GAME_MODE_CLIENT = 1001;
