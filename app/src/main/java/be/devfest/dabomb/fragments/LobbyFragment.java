@@ -2,6 +2,7 @@ package be.devfest.dabomb.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,6 +60,8 @@ public class LobbyFragment extends Fragment {
 
     private ArrayAdapter<String> mAdapter;
 
+    private Handler mHandler = new Handler();
+
     public static LobbyFragment newInstance(int gameMode) {
         LobbyFragment frag = new LobbyFragment(gameMode);
         return frag;
@@ -97,6 +100,15 @@ public class LobbyFragment extends Fragment {
         mNetwork.whenever(new NetworkListener() {
             @Override
             public void isOnline(InetAddress ip){
+
+                if(!mIsOnline) {
+                    if(mGameMode == Constants.GAME_MODE_CLIENT) {
+                        setupClient();
+                    } else {
+                        setupMaster();
+                    }
+                }
+
                 mIsOnline = true;
                 Log.d(LOG_TAG, "I'm online " + ip.toString());
             }
@@ -109,11 +121,6 @@ public class LobbyFragment extends Fragment {
             }
         });
 
-        if(mGameMode == Constants.GAME_MODE_CLIENT) {
-            setupClient();
-        } else {
-            setupMaster();
-        }
     }
 
     private void setupMaster() {
@@ -146,12 +153,31 @@ public class LobbyFragment extends Fragment {
                 promise.when(new PromiseListener<String>() {
 
                     @Override
-                    public void isResolved(String name) {
+                    public void isResolved(final String name) {
                         Log.d(LOG_TAG, "Discovered game..."+ name);
-                        mAdapter.add(name);
-                        mAdapter.notifyDataSetChanged();
+
+                        mHandler.post(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                mAdapter.add(name);
+                                mAdapter.notifyDataSetChanged();
+                            }
+                        });
                     }
                 });
+            }
+
+            @Override
+            public void isDisconnected(RemoteReference value) {
+                super.isDisconnected(value);
+                Log.d(LOG_TAG, "Disconnected");
+            }
+
+            @Override
+            public void isReconnected(RemoteReference value) {
+                super.isReconnected(value);
+                Log.d(LOG_TAG, "Reconnected");
             }
         });
     }
