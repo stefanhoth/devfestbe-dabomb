@@ -11,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import be.devfest.dabomb.GameActivity;
 import be.devfest.dabomb.R;
 import be.devfest.dabomb.fragments.NavigationDrawerFragment;
 import be.devfest.dabomb.fragments.WelcomeFragment;

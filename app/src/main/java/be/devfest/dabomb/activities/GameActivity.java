@@ -1,10 +1,11 @@
-package be.devfest.dabomb;
+package be.devfest.dabomb.activities;
 
 import android.app.Activity;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import be.devfest.dabomb.R;
 import butterknife.InjectView;
 import butterknife.Views;
 
