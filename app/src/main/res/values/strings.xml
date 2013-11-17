@@ -14,5 +14,6 @@
     <string name="btn_game_start">Start game</string>
     <string name="btn_game_join">Join game</string>
     <string name="title_activity_lobby">LobbyActivity</string>
+    <string name="header_lobby_list">Player list</string>
 
 </resources>
