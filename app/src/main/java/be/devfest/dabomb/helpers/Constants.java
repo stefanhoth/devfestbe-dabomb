@@ -11,6 +11,7 @@ public abstract class Constants {
 
 
     public static final String KEY_GAME_MODE = "KEY_GAME_MODE";
+    public static final String KEY_SESSION_ACTIVE_FLIP = "KEY_SESSION_ACTIVE_FLIP";
 
     public static final String GAME_TAG = "DABOMB_v1";
 

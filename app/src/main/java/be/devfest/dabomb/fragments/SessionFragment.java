@@ -1,6 +1,5 @@
 package be.devfest.dabomb.fragments;
 
-import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,8 +11,8 @@ import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
 import be.devfest.dabomb.R;
-import be.devfest.dabomb.activities.LobbyActivity;
 import be.devfest.dabomb.activities.WelcomeActivity;
+import be.devfest.dabomb.helpers.Constants;
 
 /**
  * TODO describe class
@@ -58,6 +57,17 @@ public class SessionFragment extends android.app.Fragment implements View.OnClic
         return rootView;
     }
 
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (mFlipper != null && savedInstanceState != null) {
+            int flipperPosition = savedInstanceState.getInt(Constants.KEY_SESSION_ACTIVE_FLIP);
+            mFlipper.setDisplayedChild(flipperPosition);
+        }
+    }
+
     @Override
     public void onClick(View view) {
 
@@ -70,14 +80,11 @@ public class SessionFragment extends android.app.Fragment implements View.OnClic
                 mFlipper.showNext();
                 break;
         }
+    }
 
-        if (extras.isEmpty()) {
-            Log.e(TAG, "Bundle has no settings. Can't start game.");
-            return;
-        }
-
-        Intent start = new Intent(getActivity(), LobbyActivity.class);
-        start.putExtras(extras);
-        startActivity(start);
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        int position = mFlipper.getDisplayedChild();
+        savedInstanceState.putInt(Constants.KEY_SESSION_ACTIVE_FLIP, position);
     }
 }
