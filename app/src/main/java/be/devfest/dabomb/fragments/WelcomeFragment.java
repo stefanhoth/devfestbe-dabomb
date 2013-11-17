@@ -9,10 +9,7 @@ import android.view.ViewGroup;
 
 import be.devfest.dabomb.R;
 import be.devfest.dabomb.activities.LobbyActivity;
-import be.devfest.dabomb.activities.WelcomeActivity;
 import be.devfest.dabomb.helpers.Constants;
-
-import static be.devfest.dabomb.helpers.Constants.KEY_GAME_MODE;
 
 /**
  * TODO describe class
@@ -23,7 +20,7 @@ import static be.devfest.dabomb.helpers.Constants.KEY_GAME_MODE;
  */
 public class WelcomeFragment extends android.app.Fragment implements View.OnClickListener {
 
-    private static final String TAG = WelcomeActivity.class.getName();
+    private static final String TAG = WelcomeFragment.class.getName();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,10 +45,10 @@ public class WelcomeFragment extends android.app.Fragment implements View.OnClic
         switch (view.getId()) {
 
             case R.id.btn_game_start:
-                extras.putInt(KEY_GAME_MODE, Constants.GAME_MODE_MASTER);
+                extras.putInt(Constants.KEY_GAME_MODE, Constants.GAME_MODE_MASTER);
                 break;
             case R.id.btn_game_join:
-                extras.putInt(KEY_GAME_MODE, Constants.GAME_MODE_CLIENT);
+                extras.putInt(Constants.KEY_GAME_MODE, Constants.GAME_MODE_CLIENT);
                 break;
         }
 

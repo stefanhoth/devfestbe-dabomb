@@ -1,6 +1,8 @@
 package be.devfest.dabomb.entities;
 
-import java.util.HashMap;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 /**
  * TODO describe class
@@ -12,15 +14,16 @@ import java.util.HashMap;
 public class Question {
 
     public String question;
-    public HashMap<String, String> options;
-    public String answer;
+    public List<String> options;
+    @SerializedName("answer")
+    public Integer answerId;
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Question{");
         sb.append("question='").append(question).append('\'');
         sb.append(", options=").append(options);
-        sb.append(", answer='").append(answer).append('\'');
+        sb.append(", answerId=").append(answerId);
         sb.append('}');
         return sb.toString();
     }

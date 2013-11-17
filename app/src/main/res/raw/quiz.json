@@ -2,23 +2,23 @@
   {
     "id": 1,
     "question": "Who founded Google?",
-    "option": {
-      "a": "Steve & Bill",
-      "b": "Peter & John",
-      "c": "Marc & James",
-      "d": "Larry & Sergey"
-    },
-    "answer": "d"
+    "options": [
+     	"Steve & Bill",
+     	"Peter & John",
+      	"Marc & James",
+      	"Larry & Sergey"
+    ],
+    "answer": 3
   },
   {
     "id": 2,
     "question": "Which color is NOT in the Google logo?",
-    "option": {
-      "a": "Blue",
-      "b": "Pink",
-      "c": "Yellow",
-      "d": "Green"
-    },
-    "answer": "b"
+    "options": [
+      "Blue",
+      "Pink",
+      "Yellow",
+      "Green"
+    ],
+    "answer": 1
   }
 ]
