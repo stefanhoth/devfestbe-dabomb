@@ -13,5 +13,6 @@
     <string name="explain">Join a game or start your own?</string>
     <string name="btn_game_start">Start game</string>
     <string name="btn_game_join">Join game</string>
+    <string name="title_activity_lobby">LobbyActivity</string>
 
 </resources>

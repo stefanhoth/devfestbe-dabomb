@@ -5,19 +5,23 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import be.devfest.dabomb.R;
+import be.devfest.dabomb.fragments.LobbyFragment;
 import be.devfest.dabomb.fragments.NavigationDrawerFragment;
-import be.devfest.dabomb.fragments.WelcomeFragment;
+import be.devfest.dabomb.helpers.Constants;
 
 ;
 
-public class WelcomeActivity extends Activity
+public class LobbyActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
-    private static final String TAG = WelcomeActivity.class.getName();
+    private static final String TAG = LobbyActivity.class.getName();
+    private int gameMode;
+
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -31,11 +35,18 @@ public class WelcomeActivity extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        setContentView(R.layout.activity_lobby);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
+
+        gameMode = getIntent().getIntExtra(Constants.KEY_GAME_MODE, 0);
+
+        if (gameMode == 0) {
+            Log.e(TAG, "Game mode not set. Closing activity.");
+            finish();
+        }
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
@@ -48,7 +59,7 @@ public class WelcomeActivity extends Activity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, new WelcomeFragment())
+                .replace(R.id.container, new LobbyFragment())
                 .commit();
     }
 
@@ -66,7 +77,7 @@ public class WelcomeActivity extends Activity
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
-            getMenuInflater().inflate(R.menu.main_menu, menu);
+            getMenuInflater().inflate(R.menu.lobby, menu);
             restoreActionBar();
             return true;
         }
