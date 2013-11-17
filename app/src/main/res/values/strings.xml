@@ -9,5 +9,9 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
     <string name="action_settings">Settings</string>
+    <string name="welcome">Welcome to daBomb!</string>
+    <string name="explain">Join a game or start your own?</string>
+    <string name="btn_game_start">Start game</string>
+    <string name="btn_game_join">Join game</string>
 
 </resources>
