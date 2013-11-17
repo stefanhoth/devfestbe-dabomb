@@ -13,7 +13,11 @@
     <string name="explain">Join a game or start your own?</string>
     <string name="btn_game_start">Start game</string>
     <string name="btn_game_join">Join game</string>
+    <string name="btn_answer">Answer</string>
     <string name="title_activity_lobby">LobbyActivity</string>
+    <string name="title_activity_session">SessionActivity</string>
     <string name="header_lobby_list">Player list</string>
 
+    <string name="label_session_round">Round $1%d</string>
+    <string name="label_session_wait">Wait for your turn</string>
 </resources>

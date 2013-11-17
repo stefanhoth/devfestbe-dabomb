@@ -9,7 +9,10 @@
         android:targetSdkVersion="19" />
 
     <!-- As required by unclouded.io -->
-    <uses-feature android:name="android.hardware.wifi" android:required="true" />
+    <uses-feature
+        android:name="android.hardware.wifi"
+        android:required="true" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -23,7 +26,7 @@
         <activity
             android:name="be.devfest.dabomb.activities.WelcomeActivity"
             android:label="@string/app_name">
-        <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -32,6 +35,9 @@
         <activity android:name=".activities.GameActivity" />
         <activity
             android:name="be.devfest.dabomb.activities.LobbyActivity"
+            android:label="@string/title_activity_lobby"></activity>
+        <activity
+            android:name="be.devfest.dabomb.activities.SessionActivity"
             android:label="@string/title_activity_lobby"></activity>
     </application>
 
