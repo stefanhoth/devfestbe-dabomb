@@ -9,9 +9,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.unclouded.android.Unclouded;
+
 import be.devfest.dabomb.R;
 import be.devfest.dabomb.fragments.LobbyFragment;
 import be.devfest.dabomb.fragments.NavigationDrawerFragment;
+import be.devfest.dabomb.fragments.WelcomeFragment;
 import be.devfest.dabomb.helpers.Constants;
 
 ;
@@ -52,6 +55,12 @@ public class LobbyActivity extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        // Set up LobbyFragment
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.container, LobbyFragment.newInstance(gameMode))
+                .commit();
     }
 
     @Override
