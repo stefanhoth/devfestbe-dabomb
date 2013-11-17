@@ -1,24 +1,30 @@
-package be.devfest.dabomb;
+package be.devfest.dabomb.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+
+import be.devfest.dabomb.GameActivity;
+import be.devfest.dabomb.R;
+import be.devfest.dabomb.fragments.NavigationDrawerFragment;
+import be.devfest.dabomb.fragments.WelcomeFragment;
+import be.devfest.dabomb.helpers.Constants;
+
+import static be.devfest.dabomb.helpers.Constants.KEY_GAME_MODE;
 
 ;
 
 public class WelcomeActivity extends Activity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, View.OnClickListener {
 
+    private static final String TAG = WelcomeActivity.class.getName();
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -52,22 +58,8 @@ public class WelcomeActivity extends Activity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                .replace(R.id.container, new WelcomeFragment())
                 .commit();
-    }
-
-    public void onSectionAttached(int number) {
-        switch (number) {
-            case 1:
-                mTitle = getString(R.string.title_section1);
-                break;
-            case 2:
-                mTitle = getString(R.string.title_section2);
-                break;
-            case 3:
-                mTitle = getString(R.string.title_section3);
-                break;
-        }
     }
 
     public void restoreActionBar() {
@@ -103,46 +95,26 @@ public class WelcomeActivity extends Activity
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
+    @Override
+    public void onClick(View view) {
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
+        Bundle extras = new Bundle();
+
+        switch (view.getId()) {
+
+            case R.id.btn_game_start:
+                extras.putInt(KEY_GAME_MODE, Constants.GAME_MODE_MASTER);
+                break;
+            case R.id.btn_game_join:
+                extras.putInt(KEY_GAME_MODE, Constants.GAME_MODE_CLIENT);
+                break;
         }
 
-        public PlaceholderFragment() {
+        if (extras.isEmpty()) {
+            Log.e(TAG, "Bundle has no settings. Can't start game.");
+            return;
         }
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_welcome, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
-        }
 
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            ((WelcomeActivity) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
-        }
     }
-
 }
